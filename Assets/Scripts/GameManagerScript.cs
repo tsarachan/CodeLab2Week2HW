@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour {
 	protected InputManagerScript inputManager;
 	protected RepopulateScript repopulateManager;
 	protected MoveTokensScript moveTokenManager;
+	protected ScoreManager scoreManager;
 
 	public GameObject grid;
 
@@ -32,6 +33,7 @@ public class GameManagerScript : MonoBehaviour {
 		inputManager = GetComponent<InputManagerScript>();
 		repopulateManager = GetComponent<RepopulateScript>();
 		moveTokenManager = GetComponent<MoveTokensScript>();
+		scoreManager = transform.root.Find("Score canvas").Find("Score").GetComponent<ScoreManager>();
 	}
 
 	public virtual void Update(){
@@ -40,7 +42,7 @@ public class GameManagerScript : MonoBehaviour {
 		if(!GridHasEmpty()){
 			//if the grid is full of tokens and has matches, remove them.
 			if(matchManager.GridHasMatch()){
-				matchManager.RemoveMatches();
+				scoreManager.UpdateScore(matchManager.RemoveMatches());
 			} else {
 				//if the grid is full and there are no matches, wait for the player to make a move (and look for it in InputManager)
 				inputManager.SelectToken();

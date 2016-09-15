@@ -171,7 +171,6 @@ public class MatchManagerScript : MonoBehaviour {
 
 				if (y < gameManager.gridHeight - 2)
 				{
-					Debug.Log("checking for vertical matches for (" + x + ", " + y + ")");
 					int verticalMatchLength = GetVerticalMatchLength(x, y);
 
 					if (verticalMatchLength > 2)
