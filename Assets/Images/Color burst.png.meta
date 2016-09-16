@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cffae55fb9cbd4526abfa91682bfa0d4
-timeCreated: 1474040383
+timeCreated: 1474046645
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,8 +63,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 150
+        width: 70
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -74,10 +74,10 @@ TextureImporter:
       name: Color burst_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 70
         y: 0
-        width: 150
-        height: 150
+        width: 70
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -87,10 +87,10 @@ TextureImporter:
       name: Color burst_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 140
         y: 0
-        width: 150
-        height: 150
+        width: 70
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,10 +100,10 @@ TextureImporter:
       name: Color burst_3
       rect:
         serializedVersion: 2
-        x: 450
+        x: 210
         y: 0
-        width: 150
-        height: 150
+        width: 70
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,10 +113,10 @@ TextureImporter:
       name: Color burst_4
       rect:
         serializedVersion: 2
-        x: 600
+        x: 280
         y: 0
-        width: 150
-        height: 150
+        width: 70
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

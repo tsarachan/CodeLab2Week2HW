@@ -6,7 +6,10 @@ public class ColorBurstBehavior : MonoBehaviour {
 	float timer = 0.0f;
 	float existDuration = 0.417f;
 
-	Animation burstAnimation;
+	void Start(){
+		Animation anim = GetComponent<Animation>();
+		existDuration = anim.clip.length;
+	}
 
 	void Update(){
 		timer += Time.deltaTime;

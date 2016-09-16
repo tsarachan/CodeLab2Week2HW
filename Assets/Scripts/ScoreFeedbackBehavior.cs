@@ -12,13 +12,13 @@ public class ScoreFeedbackBehavior : MonoBehaviour {
 	public Vector3 moveDist = new Vector3(0.0f, 10.0f, 0.0f);
 	public AnimationCurve animCurve;
 
-	void Start() {
+	void Start(){
 		rectTransform = GetComponent<RectTransform>();
 		start = rectTransform.anchoredPosition;
 		end = start + moveDist;
 	}
 
-	void Update() {
+	void Update(){
 		timer += Time.deltaTime;
 
 		Vector3 loc = Vector3.Lerp(start, end, animCurve.Evaluate(timer/moveDuration));
