@@ -5,9 +5,11 @@ public class MatchManagerScript : MonoBehaviour {
 
 	protected GameManagerScript gameManager;    //"protected" means this field is public to child scripts
 	//but not to unrelated scripts
+	protected ScoreManager scoreManager;
 
 	public virtual void Start () {
 		gameManager = GetComponent<GameManagerScript>();
+		scoreManager = transform.root.Find("Score canvas").Find("Score").GetComponent<ScoreManager>();
 	}
 
 	/// <summary>
@@ -159,7 +161,8 @@ public class MatchManagerScript : MonoBehaviour {
 					if(horizonMatchLength > 2){
 
 						for(int i = x; i < x + horizonMatchLength; i++){
-							GameObject token = gameManager.gridArray[i, y]; 
+							GameObject token = gameManager.gridArray[i, y];
+							scoreManager.LocalizedFeedback(scoreManager.BasicIncrement, token.transform.position);
 							Destroy(token);
 
 							gameManager.gridArray[i, y] = null;
@@ -174,6 +177,7 @@ public class MatchManagerScript : MonoBehaviour {
 					if (verticalMatchLength > 2){
 						for (int i = y; i < y + verticalMatchLength; i++){
 							GameObject token = gameManager.gridArray[x, i];
+							scoreManager.LocalizedFeedback(scoreManager.BasicIncrement, token.transform.position);
 							Destroy(token);
 
 							gameManager.gridArray[x, i] = null;
