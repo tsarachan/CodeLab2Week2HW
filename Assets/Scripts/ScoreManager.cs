@@ -18,9 +18,9 @@ public class ScoreManager : MonoBehaviour {
 	public void UpdateScore(int amount)
 	{
 		currentScore += amount;
-		if (currentScore <= maxScore) { score.text = currentScore.ToString(); }
-		else
-		{
+		if (currentScore <= maxScore){
+			score.text = currentScore.ToString();
+		} else {
 			currentScore = currentScore - maxScore;
 			score.text = currentScore.ToString();
 		}

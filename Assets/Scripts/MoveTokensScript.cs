@@ -157,8 +157,8 @@ public class MoveTokensScript : MonoBehaviour
     /// <param name="endGridY"></param>
     /// <param name="token"></param>
     public virtual void MoveTokenToEmptyPos(int startGridX, int startGridY,
-                                    int endGridX, int endGridY,
-                                    GameObject token)
+                              		        int endGridX, int endGridY,
+                                    		GameObject token)
     {
         /*
         The next two lines set references to the locations we're using to move the tokens.
