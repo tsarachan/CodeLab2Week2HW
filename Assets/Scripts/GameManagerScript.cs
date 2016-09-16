@@ -65,7 +65,7 @@ public class GameManagerScript : MonoBehaviour {
 	/// This creates the grid, fills it with tokens, and makes the GameObjects children of a new GameObject, TokenGrid.
 	/// It looks like this should only be called once a game.
 	/// </summary>
-	void MakeGrid() {
+	void MakeGrid(){
 		//creates a GameObject called TokenGrid, then makes all of the tokens as children of it
 		//this keeps our hierarchy neat
 		grid = new GameObject("TokenGrid");

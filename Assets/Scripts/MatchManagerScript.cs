@@ -7,7 +7,7 @@ public class MatchManagerScript : MonoBehaviour {
 	//but not to unrelated scripts
 	protected ScoreManager scoreManager;
 
-	public virtual void Start () {
+	public virtual void Start (){
 		gameManager = GetComponent<GameManagerScript>();
 		scoreManager = transform.root.Find("Score canvas").Find("Score").GetComponent<ScoreManager>();
 	}
@@ -61,8 +61,7 @@ public class MatchManagerScript : MonoBehaviour {
 		}
 	}
 
-	public bool GridHasVerticalMatch(int x, int y)
-	{
+	public bool GridHasVerticalMatch(int x, int y){
 		GameObject token1 = gameManager.gridArray[x, y + 0];
 		GameObject token2 = gameManager.gridArray[x, y + 1];
 		GameObject token3 = gameManager.gridArray[x, y + 2];
@@ -116,8 +115,7 @@ public class MatchManagerScript : MonoBehaviour {
 		return matchLength;
 	}
 
-	public int GetVerticalMatchLength(int x, int y)
-	{
+	public int GetVerticalMatchLength(int x, int y){
 		int matchLength = 1;
 
 		GameObject first = gameManager.gridArray[x, y];

@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour {
 		canvasY = overlayCanvas.anchoredPosition.y;
 	}
 
-	public void UpdateScore(int amount) {
+	public void UpdateScore(int amount){
 		currentScore += amount;
 		if (currentScore <= maxScore){
 			score.text = currentScore.ToString();
@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 
-	public void LocalizedFeedback(int amount, Vector3 loc) {
+	public void LocalizedFeedback(int amount, Vector3 loc){
 		GameObject newScoreFeedback = Instantiate(scoreFeedback,
 												  new Vector3(0.0f, 0.0f, 0.0f),
 												  Quaternion.identity) as GameObject;
