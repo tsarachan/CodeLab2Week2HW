@@ -10,10 +10,13 @@ public class InputManagerScript : MonoBehaviour {
 
 	//selected is a variable which tracks which token (if any) we've currently selected
 	protected GameObject selected = null;
+	protected GameObject selectionIcon;
+	public Vector3 offScreen = new Vector3(100.0f, 100.0f, 100.0f);
 
 	public virtual void Start () {
 		moveManager = GetComponent<MoveTokensScript>();
 		gameManager = GetComponent<GameManagerScript>();
+		selectionIcon = Instantiate(Resources.Load("Selection marker"), offScreen, Quaternion.identity) as GameObject;
 	}
 		
 	public virtual void SelectToken(){
@@ -27,7 +30,8 @@ public class InputManagerScript : MonoBehaviour {
 				//if you click on something...
 				if(selected == null){
 					//if we haven't yet selected a token, select this token and remember it
-					selected = collider.gameObject;				
+					selected = collider.gameObject;
+					selectionIcon.transform.position = collider.transform.position;
 				} else {
 					//if we HAVE already selected a token, calculate the distance between this token (which we're currently clicking on)
 					//and that one (which we clicked on last time)
@@ -40,6 +44,7 @@ public class InputManagerScript : MonoBehaviour {
 					}
 					//then deselect our current token (because we're about to destroy or forget it)
 					selected = null;
+					selectionIcon.transform.position = offScreen;
 				}
 			}
 		}
