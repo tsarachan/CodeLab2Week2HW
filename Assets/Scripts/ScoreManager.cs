@@ -15,15 +15,26 @@ public class ScoreManager : MonoBehaviour {
 		set { basicIncrement = value; }
 	}
 
+	int bonusIncrement = 100;
+	public int BonusIncrement {
+		get { return bonusIncrement; }
+		set { bonusIncrement = value; }
+	}
+
 	GameObject scoreFeedback;
+	GameObject bonusFeedback;
 
 	float canvasX;
 	float canvasY;
+
+	const float BONUS_X_LOC = -116.5f;
+	const float BONUS_Y_LOC = 330.0f;
 
 	void Start() {
 		score = GetComponent<Text>();
 		score.text = currentScore.ToString();
 		scoreFeedback = Resources.Load("Score feedback") as GameObject;
+		bonusFeedback = Resources.Load("Bonus feedback") as GameObject;
 
 		RectTransform overlayCanvas = transform.root.Find("Score canvas").GetComponent<RectTransform>();
 		canvasX = overlayCanvas.anchoredPosition.x;
@@ -55,5 +66,13 @@ public class ScoreManager : MonoBehaviour {
 		newScoreFeedback.GetComponent<Text>().text = amount.ToString();
 	}
 
+	public void BonusFeedback(int amount){
+		GameObject newBonusFeedback = Instantiate(bonusFeedback, transform.root.Find("Score canvas")) as GameObject;
 
+		newBonusFeedback.GetComponent<RectTransform>().anchoredPosition = new Vector3(BONUS_X_LOC,
+																					  BONUS_Y_LOC,
+																					  0.0f);
+
+		newBonusFeedback.GetComponent<Text>().text = "+" + amount.ToString() + " bonus";
+	}
 }

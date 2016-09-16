@@ -189,12 +189,18 @@ public class MatchManagerScript : MonoBehaviour {
 			}
 		}
 
+		if (numRemoved > 3){
+			
+			scoreManager.BonusFeedback(scoreManager.BonusIncrement * numRemoved);
+			scoreManager.UpdateScore(scoreManager.BonusIncrement * numRemoved);
+		}
+
 		return numRemoved;
 	}
 
-	protected void ProvideFeedback(Vector3 loc, int matchLength){
-		scoreManager.UpdateScore(scoreManager.BasicIncrement * matchLength);
-		scoreManager.LocalizedFeedback(scoreManager.BasicIncrement * matchLength, loc);
+	protected void ProvideFeedback(Vector3 loc, int multiplier){
+		scoreManager.UpdateScore(scoreManager.BasicIncrement * multiplier);
+		scoreManager.LocalizedFeedback(scoreManager.BasicIncrement * multiplier, loc);
 		Instantiate(colorBurst, loc, Quaternion.identity);
 	}
 }
