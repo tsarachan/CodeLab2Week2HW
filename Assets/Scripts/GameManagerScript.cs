@@ -42,7 +42,7 @@ public class GameManagerScript : MonoBehaviour {
 		if(!GridHasEmpty()){
 			//if the grid is full of tokens and has matches, remove them.
 			if(matchManager.GridHasMatch()){
-				scoreManager.UpdateScore(matchManager.RemoveMatches());
+				matchManager.RemoveMatches();
 			} else {
 				//if the grid is full and there are no matches, wait for the player to make a move (and look for it in InputManager)
 				inputManager.SelectToken();

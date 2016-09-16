@@ -163,7 +163,7 @@ public class MatchManagerScript : MonoBehaviour {
 
 						for(int i = x; i < x + horizonMatchLength; i++){
 							GameObject token = gameManager.gridArray[i, y];
-							ProvideFeedback(token.transform.position);
+							ProvideFeedback(token.transform.position, horizonMatchLength);
 							Destroy(token);
 
 							gameManager.gridArray[i, y] = null;
@@ -178,7 +178,7 @@ public class MatchManagerScript : MonoBehaviour {
 					if (verticalMatchLength > 2){
 						for (int i = y; i < y + verticalMatchLength; i++){
 							GameObject token = gameManager.gridArray[x, i];
-							ProvideFeedback(token.transform.position);
+							ProvideFeedback(token.transform.position, verticalMatchLength);
 							Destroy(token);
 
 							gameManager.gridArray[x, i] = null;
@@ -192,8 +192,9 @@ public class MatchManagerScript : MonoBehaviour {
 		return numRemoved;
 	}
 
-	protected void ProvideFeedback(Vector3 loc){
-		scoreManager.LocalizedFeedback(scoreManager.BasicIncrement, loc);
+	protected void ProvideFeedback(Vector3 loc, int matchLength){
+		scoreManager.UpdateScore(scoreManager.BasicIncrement * matchLength);
+		scoreManager.LocalizedFeedback(scoreManager.BasicIncrement * matchLength, loc);
 		Instantiate(colorBurst, loc, Quaternion.identity);
 	}
 }
