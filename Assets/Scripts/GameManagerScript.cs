@@ -157,17 +157,13 @@ public class GameManagerScript : MonoBehaviour {
 				Debug.Log("y == " + y);
 				if (x < gridWidth - 2){
 					if (matchManager.GridHasHorizontalMatch(x, y)){
-						Debug.Log("sprite at "+ x + "," + y + " was " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
 						gridArray[x, y].GetComponent<SpriteRenderer>().sprite = ChangeSprite(x, y);
-						Debug.Log("sprite at "+ x + "," + y + " is now " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
 						foundDuplicates = true;
 					}
 				}
 				if (y < gridHeight - 2){
 					if (matchManager.GridHasVerticalMatch(x, y)){
-						Debug.Log("sprite at "+ x + "," + y + " was " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
 						gridArray[x, y].GetComponent<SpriteRenderer>().sprite = ChangeSprite(x, y);
-						Debug.Log("sprite at "+ x + "," + y + " is now " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
 						foundDuplicates = true;
 					}
 				}
