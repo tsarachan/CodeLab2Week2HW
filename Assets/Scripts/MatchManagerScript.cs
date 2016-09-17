@@ -9,7 +9,7 @@ public class MatchManagerScript : MonoBehaviour {
 
 	GameObject colorBurst;
 
-	public virtual void Start (){
+	public virtual void Awake (){
 		gameManager = GetComponent<GameManagerScript>();
 		scoreManager = transform.root.Find("Score canvas").Find("Score").GetComponent<ScoreManager>();
 		colorBurst = Resources.Load("Color burst") as GameObject;

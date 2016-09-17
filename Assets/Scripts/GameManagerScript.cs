@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
@@ -19,21 +20,24 @@ public class GameManagerScript : MonoBehaviour {
 	//that will make it easy to track tokens in a grid (which is a two-dimensional shape)
 	public GameObject[,] gridArray;
 
-	protected Object[] tokenTypes;
+	protected UnityEngine.Object[] tokenTypes;
+	protected Sprite[] sprites;
 
 	//TODO: use this variable. It doesn't seem to be used anywhere.
 	GameObject selected;
 
 	public virtual void Start () {
 		//load the tokens, make the grid, and create references to the other scripts
-		tokenTypes = (Object[])Resources.LoadAll("Tokens/");
+		tokenTypes = (UnityEngine.Object[])Resources.LoadAll("Tokens/");
+		sprites = Resources.LoadAll<Sprite>("Sprites/");
 		gridArray = new GameObject[gridWidth, gridHeight];
-		MakeGrid();
 		matchManager = GetComponent<MatchManagerScript>();
 		inputManager = GetComponent<InputManagerScript>();
 		repopulateManager = GetComponent<RepopulateScript>();
 		moveTokenManager = GetComponent<MoveTokensScript>();
 		scoreManager = transform.root.Find("Score canvas").Find("Score").GetComponent<ScoreManager>();
+		MakeGrid();
+		ChangeGridDuplicates();
 	}
 
 	public virtual void Update(){
@@ -136,11 +140,47 @@ public class GameManagerScript : MonoBehaviour {
 		Vector3 position = GetWorldPositionFromGridPosition(x, y);
 		GameObject token = 
 			//we create a random kind of token, at that exact position in the grid, with the same rotation as its parent (TokenGrid)
-			Instantiate(tokenTypes[Random.Range(0, tokenTypes.Length)], 
+			Instantiate(tokenTypes[UnityEngine.Random.Range(0, tokenTypes.Length)], 
 			            position, 
 			            Quaternion.identity) as GameObject;
 		token.transform.parent = parent.transform;
 		//then, we put this token into the array of tokens
 		gridArray[x, y] = token;
+	}
+
+	protected void ChangeGridDuplicates(){
+		bool foundDuplicates = false;
+
+		for (int x = 0; x < gridWidth; x++){
+			Debug.Log("x == " + x);
+			for (int y = 0; y < gridHeight; y++){
+				Debug.Log("y == " + y);
+				if (x < gridWidth - 2){
+					if (matchManager.GridHasHorizontalMatch(x, y)){
+						Debug.Log("sprite at "+ x + "," + y + " was " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
+						gridArray[x, y].GetComponent<SpriteRenderer>().sprite = ChangeSprite(x, y);
+						Debug.Log("sprite at "+ x + "," + y + " is now " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
+						foundDuplicates = true;
+					}
+				}
+				if (y < gridHeight - 2){
+					if (matchManager.GridHasVerticalMatch(x, y)){
+						Debug.Log("sprite at "+ x + "," + y + " was " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
+						gridArray[x, y].GetComponent<SpriteRenderer>().sprite = ChangeSprite(x, y);
+						Debug.Log("sprite at "+ x + "," + y + " is now " + gridArray[x, y].GetComponent<SpriteRenderer>().sprite.name);
+						foundDuplicates = true;
+					}
+				}
+			}
+		}
+
+		if (foundDuplicates) { ChangeGridDuplicates(); }
+	}
+
+	protected Sprite ChangeSprite(int x, int y){
+		int index = Array.IndexOf(sprites, gridArray[x, y].GetComponent<SpriteRenderer>().sprite);
+		index++;
+		if (index > sprites.Length - 1) { index = 0; }
+		return sprites[index];
 	}
 }
