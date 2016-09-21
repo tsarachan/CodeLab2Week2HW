@@ -181,6 +181,9 @@ public class MoveTokensScript : MonoBehaviour
             */
             gameManager.gridArray[endGridX, endGridY] = token; 
             gameManager.gridArray[startGridX, startGridY] = null;
+
+			RepopulateScript repopulateScript = GetComponent<RepopulateScript>();
+			repopulateScript.AddNewTokensToRepopulateGrid();
         }
     }
 
